@@ -1,0 +1,76 @@
+.homePage{
+    position: relative;
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    gap: 10.9rem;
+    flex-direction: column;
+    align-items: center;
+    padding: 28rem 38.1rem 24.9rem 30.9rem;
+
+    &__getRandomQuoteButton{
+        position: fixed;
+        display: flex;
+        align-items: center;
+        top: 3.1rem;
+        right: 10rem;
+
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 120%;
+
+        color: #333333;
+    }
+
+    &__goToAuthor{
+        align-self: flex-end;
+        width: 100%;
+        max-width: 67.2rem;
+
+        display: flex;
+        justify-content: space-between;
+
+        cursor: pointer;
+        padding: 5rem 3.9rem 4.9rem 2.9rem;
+
+        &__authorName{
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 28px;
+
+            color: #4F4F4F;
+        }
+
+        &__quoteGender{
+
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            
+            color: #828282;
+        }
+
+        &__icon{
+            color: transparent;
+        }
+
+        &:hover{
+            background: #333333;
+
+            .homePage__goToAuthor__authorName{
+                color: #F2F2F2;
+            }
+            .homePage__goToAuthor__icon{
+                color: #F2F2F2;
+            }
+        }
+    }
+
+}
+
+
+@media screen and (max-width: 75em) {
+    .homePage{
+        padding: 6rem 3.81rem 2.49rem 3.09rem;
+    }
+}
