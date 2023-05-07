@@ -9,8 +9,16 @@ const createAppAsyncThunk = createAsyncThunk.withTypes<{
   dispatch: AppDispatch
 }>()
 
-const initialState = {
-  countriesData:[],
+interface Country{
+  name:{common:string},
+}
+
+interface CountriesState{
+  countriesData:Country[]
+} 
+
+const initialState:CountriesState = {
+  countriesData: [],
 }
 
 
