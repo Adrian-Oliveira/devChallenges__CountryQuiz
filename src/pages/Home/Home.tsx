@@ -5,12 +5,15 @@ import './homePage.scss';
 
 import { useAppDispatch, useAppSelector } from '../../core/hooks';
 
-import { fetchCountriesData } from '../../redux/countries/countriesSlice';
+import { fetchCountriesData, generateRandomQuestion } from '../../redux/countries/countriesSlice';
 
 const Home = ()=> {
 
     const dispatch = useAppDispatch();
-    const countriesData = useAppSelector((store)=>store.countries.countriesData)
+    const countriesData = useAppSelector((store)=>store.countries.countriesData);
+    const options = useAppSelector((store)=>store.countries.options);
+    const questionType = useAppSelector((store)=>store.countries.questionType);
+    const rightAnswer = useAppSelector((store)=>store.countries.currentCountry);
 
     
     useEffect(()=>{
@@ -20,10 +23,13 @@ const Home = ()=> {
     return(
         <div className='homePage'>
 
-            {countriesData.map((c)=>{
+            <h1>questionType: {questionType}</h1>
+            <h1>rightAnswer : {rightAnswer.name.common}</h1>
+            <h1>Options</h1>
+            {options.map((c, index)=>{
 
                 return(
-                    <div>
+                    <div key={index}>
                         {c?.name?.common}
                     </div>
                 );
