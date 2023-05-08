@@ -13,21 +13,35 @@ const questionsTypes:("flag"|"capital")[] = ["flag","capital"];
 
 interface Country{
   name:{common:string},
+  capital:string[],
+  flag:string
 }
 
 interface CountriesState{
   countriesData:Country[]
   currentCountry:Country,
   options:Country[],
-  questionType: "flag"|"capital"
+  questionType: "flag"|"capital",
+  currentGuess: string,
+  guessed: boolean,
+  gaveWrongAnswer: boolean,
+  currentScore: number
 
 } 
 
 const initialState:CountriesState = {
   countriesData: [],
-  currentCountry:{name:{common:''}},
+  currentCountry:{
+                  name:{common:''},
+                  capital:[''], 
+                  flag:''
+                },
   options:[],
   questionType:"capital",
+  currentGuess:'',
+  guessed: false,
+  gaveWrongAnswer: false,
+  currentScore: 0
 }
 
 
@@ -45,6 +59,11 @@ export const countriesSlice = createSlice({
   initialState,
   reducers: {
     generateRandomQuestion:(state)=>{
+
+      state.gaveWrongAnswer = false;
+      state.guessed = false
+      state.currentGuess = ''
+
       state.questionType = questionsTypes[Math.floor(Math.random() * questionsTypes.length)]
 
       const numberOfCountries:number = state.countriesData.length
@@ -64,6 +83,18 @@ export const countriesSlice = createSlice({
                       c1.name.common<c2.name.common?-1:
                       c1.name.common>c2.name.common?1:0)
 
+    },
+    guessAnswer:(state, action:PayloadAction<Country>)=>{
+
+      state.guessed = true
+      state.currentGuess = action.payload.name.common
+
+      if(state.currentCountry.name.common !== action.payload.name.common){
+        state.gaveWrongAnswer = true; 
+      }
+      else{
+        state.currentScore++; 
+      }
     }
   },
   extraReducers: (builder) => {
@@ -77,6 +108,6 @@ export const countriesSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { generateRandomQuestion } = countriesSlice.actions
+export const { generateRandomQuestion, guessAnswer } = countriesSlice.actions
 
 export default countriesSlice.reducer;
