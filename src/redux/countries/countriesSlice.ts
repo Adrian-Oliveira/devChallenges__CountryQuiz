@@ -66,6 +66,10 @@ export const countriesSlice = createSlice({
       const numberOfCountries:number = state.countriesData.length
       state.currentCountry = state.countriesData[Math.floor(Math.random() *numberOfCountries)]
       
+      state.currentCountry.capital ===undefined?
+      state.questionType='flag':
+      state.questionType = questionsTypes[Math.floor(Math.random() * questionsTypes.length)];
+
       const copy = [...state.countriesData];
       const options: Country[] = [state.currentCountry as Country];
       for (let i = 0; i < 3; i++) {
