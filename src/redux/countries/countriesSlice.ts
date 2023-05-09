@@ -63,14 +63,9 @@ export const countriesSlice = createSlice({
       state.gaveWrongAnswer = false;
       state.guessed = false
       state.currentGuess = ''
-
-      state.questionType = questionsTypes[Math.floor(Math.random() * questionsTypes.length)]
-
       const numberOfCountries:number = state.countriesData.length
-      
       state.currentCountry = state.countriesData[Math.floor(Math.random() *numberOfCountries)]
-
-
+      
       const copy = [...state.countriesData];
       const options: Country[] = [state.currentCountry as Country];
       for (let i = 0; i < 3; i++) {
@@ -95,6 +90,15 @@ export const countriesSlice = createSlice({
       else{
         state.currentScore++; 
       }
+    },
+    newGame:(state)=>{
+      state.guessed = initialState.guessed;
+      state.currentCountry = initialState.currentCountry;
+      state.currentGuess = initialState.currentGuess;
+      state.gaveWrongAnswer = initialState.gaveWrongAnswer;
+      state.options = initialState.options;
+
+      countriesSlice.caseReducers.generateRandomQuestion(state);
     }
   },
   extraReducers: (builder) => {
@@ -108,6 +112,6 @@ export const countriesSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { generateRandomQuestion, guessAnswer } = countriesSlice.actions
+export const { generateRandomQuestion, guessAnswer, newGame } = countriesSlice.actions
 
 export default countriesSlice.reducer;
