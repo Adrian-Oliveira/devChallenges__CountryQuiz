@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import './homePage.scss';
 
 
+import icon from '../../assets/undraw_adventure_4hum 1.svg'
+
 import { useAppDispatch, useAppSelector } from '../../core/hooks';
 
 import { fetchCountriesData, generateRandomQuestion, guessAnswer, newGame } from '../../redux/countries/countriesSlice';
@@ -28,40 +30,45 @@ const Home = ()=> {
 
     return(
         <div className='homePage'>
+            {/* <img src={background} alt="" /> */}
+            <h1 className='homePage__title'>Country quiz </h1>
 
-            {gameEnded?
-                <>
-                    <h1>Result</h1>
-                    <p>You got {currentScore} correct answers</p>
-                    <button onClick={()=>{dispatch(newGame()); setGameEnded(false)}}>Try again</button>
-                </>
-                :
-                <>
-                    {questionType==='capital'?
-                    <h1>{currentCountry.capital[0]} is the capital of</h1>
-                        :
-                        <h1>{currentCountry.flag} Which country does this flag belong to?  </h1>
-                    }
-                    <h1>rightAnswer : {rightAnswer.name.common}</h1>
-                    <h1>Options</h1>
-                    {options.map((c, index)=>{
+            <section className='homePage__cardGame'>
+                <img src={icon} className='homePage__cardGame__image' />
+                {gameEnded?
+                    <>
+                        <h1>Result</h1>
+                        <p>You got {currentScore} correct answers</p>
+                        <button onClick={()=>{dispatch(newGame()); setGameEnded(false)}}>Try again</button>
+                    </>
+                    :
+                    <>
+                        {questionType==='capital'?
+                        <h1>{currentCountry.capital[0]} is the capital of</h1>
+                            :
+                            <h1>{currentCountry.flag} Which country does this flag belong to?  </h1>
+                        }
+                        <h1>rightAnswer : {rightAnswer.name.common}</h1>
+                        <h1>Options</h1>
+                        {options.map((c, index)=>{
 
-                        return(
-                            <button key={index} onClick={()=>dispatch(guessAnswer(c))}>
-                                {c?.name?.common}
+                            return(
+                                <button key={index} onClick={()=>dispatch(guessAnswer(c))}>
+                                    {c?.name?.common}
+                                </button>
+                            );
+                        })}
+
+                        {guessed?
+                            <button onClick={()=>{
+                                gaveWrongAnswer?setGameEnded(true):dispatch(generateRandomQuestion())}}>
+                                Next
                             </button>
-                        );
-                    })}
-
-                    {guessed?
-                        <button onClick={()=>{
-                            gaveWrongAnswer?setGameEnded(true):dispatch(generateRandomQuestion())}}>
-                            Next
-                        </button>
-                        :null}
-                </>
-            
-            }
+                            :null}
+                    </>
+                
+                }
+        </section>
         </div>
     );
 }

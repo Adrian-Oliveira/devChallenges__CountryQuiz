@@ -3,69 +3,43 @@
     width: 100%;
     min-height: 100dvh;
     display: flex;
-    gap: 1.2rem;
     flex-direction: column;
+    gap: 1rem;
     align-items: center;
-    padding: 28rem 38.1rem 24.9rem 30.9rem;
+    background-image: url('../../assets/background.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
 
-    &__getRandomQuoteButton{
-        position: fixed;
-        display: flex;
-        align-items: center;
-        top: 3.1rem;
-        right: 10rem;
+    padding: 18rem 0rem;
 
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 120%;
+    &__title{
+        width: 46.4rem;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 54px;
 
-        color: #333333;
+        /* identical to box height */
+        text-transform: uppercase;
+
+        color: #F2F2F2;
     }
 
-    &__goToAuthor{
-        align-self: flex-end;
+    &__cardGame{
+        position: relative;
+
         width: 100%;
-        max-width: 67.2rem;
+        max-width: 46.4rem;
+        height: 51.5rem;
+        background: #FFFFFF;
+        border-radius: 24px;
+        padding: 6.8rem 3.2rem 6.8rem 3.2rem ;
 
-        display: flex;
-        justify-content: space-between;
-
-        cursor: pointer;
-        padding: 5rem 3.9rem 4.9rem 2.9rem;
-
-        &__authorName{
-            font-weight: 700;
-            font-size: 24px;
-            line-height: 28px;
-
-            color: #4F4F4F;
-        }
-
-        &__quoteGender{
-
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 16px;
-            
-            color: #828282;
-        }
-
-        &__icon{
-            color: transparent;
-        }
-
-        &:hover{
-            background: #333333;
-
-            .homePage__goToAuthor__authorName{
-                color: #F2F2F2;
-            }
-            .homePage__goToAuthor__icon{
-                color: #F2F2F2;
-            }
+        &__image{
+            position: absolute;
+            right: 0;
+            top:-7.4em;
         }
     }
-
 }
 
 
