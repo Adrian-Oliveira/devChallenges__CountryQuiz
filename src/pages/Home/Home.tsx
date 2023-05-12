@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import './homePage.scss';
 
 
-import icon from '../../assets/undraw_adventure_4hum 1.svg'
+import icon from '../../assets/undraw_adventure_4hum 1.svg';
+import endGameIcon from '../../assets/undraw_winners_ao2o 2.svg';
 
 import { useAppDispatch, useAppSelector } from '../../core/hooks';
 
@@ -34,15 +35,19 @@ const Home = ()=> {
         <div className='homePage'>
             <h1 className='homePage__title'>Country quiz </h1>
             <section className='homePage__cardGame'>
-                <img src={icon} className='homePage__cardGame__image' />
                 {gameEnded?
-                    <>
-                        <h1>Result</h1>
-                        <p>You got {currentScore} correct answers</p>
-                        <button onClick={()=>{dispatch(newGame()); setGameEnded(false)}}>Try again</button>
-                    </>
+                    <div className='homePage__endgame'>
+                        <img className='homePage__endgame__img' src={endGameIcon} alt="" />
+                        <div className='homePage__endgame__msg' >
+                            <h1>Result</h1>
+                            <p>You got {currentScore} correct answers</p>
+                        </div>  
+                        <button className='homePage__endgame__btn' 
+                        onClick={()=>{dispatch(newGame()); setGameEnded(false)}}>Try again</button>
+                    </div>
                     :
                     <>
+                        <img src={icon} className='homePage__cardGame__image' />
                         {questionType==='capital'?
                             <h1 className='homePage__cardGame__question'>
                                 {currentCountry.capital[0]} is the capital of
@@ -65,7 +70,9 @@ const Home = ()=> {
                         })}
 
                         {guessed?
-                            <button onClick={()=>{
+                            <button 
+                                className='homePage__cardGame__nextButton'
+                                onClick={()=>{
                                 gaveWrongAnswer?setGameEnded(true):dispatch(generateRandomQuestion())}}>
                                 Next
                             </button>

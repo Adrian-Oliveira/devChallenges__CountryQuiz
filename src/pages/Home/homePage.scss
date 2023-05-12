@@ -96,7 +96,28 @@
                 line-height: 36px
             }
         }
-    }   
+
+        &__nextButton{
+            align-self: flex-end;
+            width: 11.6rem;
+            height: 5.6rem;
+            background: #F9A826;
+            box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
+            border-radius: 12px;
+
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 27px;
+
+            color: #FFFFFF;
+        }
+    }
+    &__endgame{
+        display: flex;
+        flex-direction: column;
+        gap:7.1rem
+    }
+
 }
 
 
