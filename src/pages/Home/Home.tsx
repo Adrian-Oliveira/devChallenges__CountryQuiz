@@ -44,12 +44,17 @@ const Home = ()=> {
                     :
                     <>
                         {questionType==='capital'?
-                        <h1>{currentCountry.capital[0]} is the capital of</h1>
+                            <h1 className='homePage__cardGame__question'>
+                                {currentCountry.capital[0]} is the capital of
+                            </h1>
                             :
-                            <h1>{currentCountry.flag} Which country does this flag belong to?  </h1>
+                            <>
+                                <h1 className='homePage__cardGame__flag'>{currentCountry.flag}</h1>
+                                <h1 className='homePage__cardGame__question'>
+                                    Which country does this flag belong to?  
+                                </h1>
+                            </>
                         }
-                        <h1>rightAnswer : {rightAnswer.name.common}</h1>
-                        <h1>Options</h1>
                         {options.map((c, index)=>{
 
                             return(
