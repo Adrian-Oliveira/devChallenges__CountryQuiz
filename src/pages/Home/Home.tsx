@@ -9,6 +9,7 @@ import endGameIcon from '../../assets/undraw_winners_ao2o 2.svg';
 import { useAppDispatch, useAppSelector } from '../../core/hooks';
 
 import { fetchCountriesData, generateRandomQuestion, guessAnswer, newGame } from '../../redux/countries/countriesSlice';
+import { current } from '@reduxjs/toolkit';
 
 const Home = ()=> {
 
@@ -18,6 +19,7 @@ const Home = ()=> {
     const rightAnswer = useAppSelector((store)=>store.countries.currentCountry);
     const currentCountry = useAppSelector((store)=>store.countries.currentCountry);
     const currentScore = useAppSelector((store)=>store.countries.currentScore);
+    const currentGuess = useAppSelector((store)=>store.countries.currentGuess);
     const guessed = useAppSelector((store)=>store.countries.guessed);
     const gaveWrongAnswer = useAppSelector((store)=>store.countries.gaveWrongAnswer);
 
@@ -63,8 +65,16 @@ const Home = ()=> {
                     }
                     {options.map((c, index)=>{
 
+                        const modifyButton = guessed && (c.name.common === rightAnswer.name.common)?
+                                                'rightAnswer':
+                                             gaveWrongAnswer && (c.name.common === currentGuess)?
+                                                'wrongAnswer':null;
+                            
                         return(
-                            <button className='homePage__cardGame__button' key={index} onClick={()=>dispatch(guessAnswer(c))}>
+                            <button 
+                            className={`homePage__cardGame__button 
+                                        ${modifyButton && `homePage__cardGame__button--${modifyButton}`}`} 
+                            key={index} onClick={()=>dispatch(guessAnswer(c))}>
                                 <i>{alternatives[index]}</i> <span>{c.name.common}</span>
                             </button>
                         );

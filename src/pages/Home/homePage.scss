@@ -96,6 +96,29 @@
                 font-size: 24px;
                 line-height: 36px
             }
+
+            &--rightAnswer{
+                background: #60BF88;
+                border-color: transparent;
+                color: #FFFFFF;
+
+                &:hover{
+                    background: #60BF88;
+                    border-color: transparent;
+                    color: #FFFFFF;
+                }
+            }
+            &--wrongAnswer{
+                background: #EA8282;
+                border-color: transparent;
+                color: #FFFFFF;
+
+                &:hover{
+                    background: #EA8282;
+                    border-color: transparent;
+                    color: #FFFFFF;
+                }
+            }
         }
 
         &__nextButton{
