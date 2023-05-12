@@ -21,6 +21,7 @@ const Home = ()=> {
     const gaveWrongAnswer = useAppSelector((store)=>store.countries.gaveWrongAnswer);
 
     const [gameEnded, setGameEnded] = useState(false);
+    const alternatives = ["A", "B", "C","D"]
     
     useEffect(()=>{
         dispatch(fetchCountriesData());
@@ -29,10 +30,9 @@ const Home = ()=> {
    
 
     return(
-        <div className='homePage'>
-            {/* <img src={background} alt="" /> */}
-            <h1 className='homePage__title'>Country quiz </h1>
 
+        <div className='homePage'>
+            <h1 className='homePage__title'>Country quiz </h1>
             <section className='homePage__cardGame'>
                 <img src={icon} className='homePage__cardGame__image' />
                 {gameEnded?
@@ -58,8 +58,8 @@ const Home = ()=> {
                         {options.map((c, index)=>{
 
                             return(
-                                <button key={index} onClick={()=>dispatch(guessAnswer(c))}>
-                                    {c?.name?.common}
+                                <button className='homePage__cardGame__button' key={index} onClick={()=>dispatch(guessAnswer(c))}>
+                                    <i>{alternatives[index]}</i> <span>{c.name.common}</span>
                                 </button>
                             );
                         })}
@@ -73,7 +73,7 @@ const Home = ()=> {
                     </>
                 
                 }
-        </section>
+            </section>
         </div>
     );
 }
