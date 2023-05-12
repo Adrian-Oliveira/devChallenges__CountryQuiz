@@ -34,53 +34,53 @@ const Home = ()=> {
 
         <div className='homePage'>
             <h1 className='homePage__title'>Country quiz </h1>
-            <section className='homePage__cardGame'>
                 {gameEnded?
-                    <div className='homePage__endgame'>
-                        <img className='homePage__endgame__img' src={endGameIcon} alt="" />
-                        <div className='homePage__endgame__msg' >
-                            <h1>Result</h1>
-                            <p>You got {currentScore} correct answers</p>
-                        </div>  
-                        <button className='homePage__endgame__btn' 
-                        onClick={()=>{dispatch(newGame()); setGameEnded(false)}}>Try again</button>
-                    </div>
-                    :
-                    <>
-                        <img src={icon} className='homePage__cardGame__image' />
-                        {questionType==='capital'?
+                <div className='homePage__endgame'>
+                    <img className='homePage__endgame__img' src={endGameIcon} alt="" />
+                    <div className='homePage__endgame__msg' >
+                        <h1>Result</h1>
+                        <p>
+                            You got <span className='homePage__endgame__score'>{currentScore}</span> correct answers
+                        </p>
+                    </div>  
+                    <button className='homePage__endgame__btn' 
+                    onClick={()=>{dispatch(newGame()); setGameEnded(false)}}>Try again</button>
+                </div>
+                :
+                <div className='homePage__cardGame'>
+                    <img src={icon} className='homePage__cardGame__image' />
+                    {questionType==='capital'?
+                        <h1 className='homePage__cardGame__question'>
+                            {currentCountry.capital[0]} is the capital of
+                        </h1>
+                        :
+                        <>
+                            <h1 className='homePage__cardGame__flag'>{currentCountry.flag}</h1>
                             <h1 className='homePage__cardGame__question'>
-                                {currentCountry.capital[0]} is the capital of
+                                Which country does this flag belong to?  
                             </h1>
-                            :
-                            <>
-                                <h1 className='homePage__cardGame__flag'>{currentCountry.flag}</h1>
-                                <h1 className='homePage__cardGame__question'>
-                                    Which country does this flag belong to?  
-                                </h1>
-                            </>
-                        }
-                        {options.map((c, index)=>{
+                        </>
+                    }
+                    {options.map((c, index)=>{
 
-                            return(
-                                <button className='homePage__cardGame__button' key={index} onClick={()=>dispatch(guessAnswer(c))}>
-                                    <i>{alternatives[index]}</i> <span>{c.name.common}</span>
-                                </button>
-                            );
-                        })}
-
-                        {guessed?
-                            <button 
-                                className='homePage__cardGame__nextButton'
-                                onClick={()=>{
-                                gaveWrongAnswer?setGameEnded(true):dispatch(generateRandomQuestion())}}>
-                                Next
+                        return(
+                            <button className='homePage__cardGame__button' key={index} onClick={()=>dispatch(guessAnswer(c))}>
+                                <i>{alternatives[index]}</i> <span>{c.name.common}</span>
                             </button>
-                            :null}
-                    </>
-                
-                }
-            </section>
+                        );
+                    })}
+
+                    {guessed?
+                        <button 
+                            className='homePage__cardGame__nextButton'
+                            onClick={()=>{
+                            gaveWrongAnswer?setGameEnded(true):dispatch(generateRandomQuestion())}}>
+                            Next
+                        </button>
+                        :null}
+                </div>
+            
+            }
         </div>
     );
 }
