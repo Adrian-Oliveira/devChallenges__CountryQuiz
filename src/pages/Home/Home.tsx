@@ -9,7 +9,6 @@ import endGameIcon from '../../assets/undraw_winners_ao2o 2.svg';
 import { useAppDispatch, useAppSelector } from '../../core/hooks';
 
 import { fetchCountriesData, generateRandomQuestion, guessAnswer, newGame } from '../../redux/countries/countriesSlice';
-import { current } from '@reduxjs/toolkit';
 
 const Home = ()=> {
 
