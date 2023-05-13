@@ -74,8 +74,22 @@ const Home = ()=> {
                             <button 
                             className={`homePage__cardGame__button 
                                         ${modifyButton && `homePage__cardGame__button--${modifyButton}`}`} 
-                            key={index} onClick={()=>dispatch(guessAnswer(c))}>
+                            key={index} onClick={()=>!guessed?dispatch(guessAnswer(c)):null}>
                                 <i>{alternatives[index]}</i> <span>{c.name.common}</span>
+
+                                {   
+                                    modifyButton === 'wrongAnswer'?
+                                        <i className="material-symbols-outlined homePage__cardGame__button__icon">
+                                            cancel
+                                        </i>
+                                    :
+                                    modifyButton === 'rightAnswer'?
+                                        <i className="material-symbols-outlined homePage__cardGame__button__icon">
+                                            task_alt
+                                        </i>
+                                    :
+                                    null
+                                }
                             </button>
                         );
                     })}

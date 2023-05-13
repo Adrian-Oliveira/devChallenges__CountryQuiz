@@ -63,7 +63,7 @@
         }
 
         &__button{
-
+            position: relative;
             width: 100%;
             max-width: 40rem;
             height: 5.6rem;
@@ -118,6 +118,10 @@
                     border-color: transparent;
                     color: #FFFFFF;
                 }
+            }
+            &__icon{
+                position: absolute;
+                right: 1.7rem;
             }
         }
 

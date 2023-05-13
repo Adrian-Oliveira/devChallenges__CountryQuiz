@@ -100,6 +100,7 @@ export const countriesSlice = createSlice({
       state.currentCountry = initialState.currentCountry;
       state.currentGuess = initialState.currentGuess;
       state.gaveWrongAnswer = initialState.gaveWrongAnswer;
+      state.currentScore = 0;
       state.options = initialState.options;
 
       countriesSlice.caseReducers.generateRandomQuestion(state);
